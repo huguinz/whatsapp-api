@@ -1,7 +1,16 @@
 {
+  "name": "whatsapp-api",
+  "version": "1.0",
+  "description": "API para manipular dados de contas do whatsapp",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
     "express": "^4.21.2"
-  }
+  },
+  "author": "Hugo Lopes",
+  "license": "MIT"
 }
