@@ -96,6 +96,7 @@ const getUserMessages = (id) => {
             userChats.nome = item.account
             userChats.contatos = userMessages
             item.contacts.forEach((contacts) => {
+                userData = []
                 userMessages.push(
                                     {
                                         nome: contacts.name, 
@@ -198,7 +199,7 @@ const getKeyWord = (id, name, keyWord) => {
 //console.log(getPersonalDate(11987876567))
 //console.log(getUserAccountData(11987876567))
 //console.log(getContactsData(11987876567))
-//console.log(getUserMessages(11966578996))
+console.log(getUserMessages(11966578996))
 //console.log(getUserContacts(11966578996, 'José Maria da silva'))
 //console.log(getKeyWord(11955577796, 'peter wilsen', 'co'))
 
