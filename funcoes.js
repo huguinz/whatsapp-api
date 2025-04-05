@@ -124,7 +124,7 @@ const getUserContacts = (id, name) => {
 		if (idUser == item.number) {
 			contactsData.nome = item.account
 			item.contacts.forEach((contacts) => {
-				if (nameContact == contacts.name.toUpperCase()) {
+				if (contacts.name.toUpperCase().includes(nameContact)) {
 					contactsData.contato = contacts.name
 					contacts.messages.forEach((messagesContacts) => {
 						userData.push({
@@ -184,7 +184,7 @@ const getKeyWord = (id, name, keyWord) => {
 //console.log(getUserAccountData(11987876567))
 //console.log(getContactsData(11987876567))
 //console.log(getUserMessages(11966578996))
-//console.log(getUserContacts(11966578996, 'José Maria da silva'))
+//console.log(getUserContacts(11966578996, 'José'))
 //console.log(getKeyWord(11955577796, 'peter wilsen', 'co'))
 
 module.exports = {
