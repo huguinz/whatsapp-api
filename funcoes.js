@@ -114,35 +114,39 @@ const getUserMessages = (id) => {
 }
 
 const getUserContacts = (id, name) => {
-	let idUser = Number(id)
-	let nameContact = String(name).toUpperCase()
-	let contactsData = {}
-	let userData = []
+	id = Number(id)
+	name = String(name).toUpperCase()
+	let allData = {}
+	let contactData = []
 	let status = false
 
 	whatsappDataRequest.contatos['whats-users'].forEach((item) => {
-		if (idUser == item.number) {
-			contactsData.nome = item.account
-			item.contacts.forEach((contacts) => {
-				if (contacts.name.toUpperCase().includes(nameContact)) {
-					contactsData.contato = contacts.name
-					contacts.messages.forEach((messagesContacts) => {
-						userData.push({
-							sender: messagesContacts.sender,
-							content: messagesContacts.content,
-							time: messagesContacts.time
+		if (id == item.number) {
+			allData.nome = item.account
+			allData.contato = contactData
+			item.contacts.forEach((itemContact) => {
+				if (itemContact.name.toUpperCase().includes(name)) {
+					let messagesData = []
+					contactData.push({
+						nome_contato: itemContact.name,
+						mensagens: messagesData
+					})
+					itemContact.messages.forEach((itemMessages) => {
+						messagesData.push({
+							sender: itemMessages.sender,
+							content: itemMessages.content,
+							time: itemMessages.time
 						})
 					})
 					status = true
-					contactsData.mensagens = userData
 				}
 			})
 		}
 	})
-	if (status == true) {
-		return contactsData
+	if (status) {
+		return allData
 	} else {
-		return status
+		return false
 	}
 }
 
@@ -155,23 +159,25 @@ const getKeyWord = (id, name, keyWord) => {
 	let status = false
 
 	whatsappDataRequest.contatos['whats-users'].forEach((item) => {
-		if (idUser == item.number) contactsData.nome = item.account
-		item.contacts.forEach((contacts) => {
-			if (nameContact == contacts.name.toUpperCase()) {
-				contactsData.contato = contacts.name
-				contacts.messages.forEach((messages) => {
-					if (messages.content.toUpperCase().includes(keyWordUser)) {
-						userData.push({
-							sender: messages.sender,
-							content: messages.content,
-							time: messages.time
-						})
-						status = true
-						contactsData.conversas_encontradas = userData
-					}
-				})
-			}
-		})
+		if (idUser == item.number) {
+			contactsData.nome = item.account
+			item.contacts.forEach((contacts) => {
+				if (nameContact == contacts.name.toUpperCase()) {
+					contactsData.contato = contacts.name
+					contacts.messages.forEach((messages) => {
+						if (messages.content.toUpperCase().includes(keyWordUser)) {
+							userData.push({
+								sender: messages.sender,
+								content: messages.content,
+								time: messages.time
+							})
+							status = true
+							contactsData.conversas_encontradas = userData
+						}
+					})
+				}
+			})
+		}
 	})
 	if (status == true) {
 		return contactsData
@@ -184,7 +190,7 @@ const getKeyWord = (id, name, keyWord) => {
 //console.log(getUserAccountData(11987876567))
 //console.log(getContactsData(11987876567))
 //console.log(getUserMessages(11966578996))
-//console.log(getUserContacts(11966578996, 'José'))
+console.log(getUserContacts(11966578996, 'J'))
 //console.log(getKeyWord(11955577796, 'peter wilsen', 'co'))
 
 module.exports = {
