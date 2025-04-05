@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: Helvetica, sans-serif;
+	box-sizing: border-box;
+}
+
+:root {
+	--default-font-size: clamp(0.5rem, 1.2vw, 2rem);
+	--default-page-color: whitesmoke;
+	--default-border-color: #00000010;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	height: 100dvh;
+	width: 100dvw;
+	background-color: var(--default-page-color);
+
+	& .container {
+		height: 100vh;
+		width: 30vw;
+		border-right: 1px solid var(--default-border-color);
+
+		& #contacts {
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+			width: 100%;
+
+			& div {
+				display: flex;
+				background-color: white;
+				padding: 1rem;
+				border-bottom: 1px solid var(--default-border-color);
+				height: 6vw;
+				transition: 0.3s ease-out;
+				position: relative;
+
+				& h2 {
+					font-size: var(--default-font-size);
+					height: min-content;
+					position: absolute;
+					left: 6vw;
+					top: 1.7vw;
+				}
+			}
+
+			& div:hover {
+				background-color: #dfd8d89b;
+				cursor: pointer;
+				transform: translateX(5px);
+			}
+
+			& div:active {
+				background-color: #9488889b;
+			}
+		}
+	}
+
+	& .header {
+		display: flex;
+		justify-content: space-between;
+		background-color: white;
+		border-bottom: 1px solid var(--default-border-color);
+		border-right: 1px solid var(--default-border-color);
+		flex-direction: column;
+		padding: 0.9rem;
+		width: 30vw;
+		position: relative;
+
+		& input {
+			height: 5vh;
+			width: 28vw;
+			padding: 0.8rem;
+			border-radius: 0.5rem;
+			margin-top: 1rem;
+			border: none;
+			background-color: #dfd8d89b;
+			outline-color: #00000051;
+			font-size: var(--default-font-size);
+		}
+
+		& .icons {
+			display: flex;
+			gap: 1.3rem;
+			position: absolute;
+			right: 0.9rem;
+			top: 1.5rem;
+
+			& .icons_elements {
+				width: 1.8vw;
+				height: 1.8vw;
+			}
+		}
+	}
+}
+
+.profile_image {
+	width: 3.8vw;
+	height: 3.8vw;
+	margin-right: 1vw;
+}
