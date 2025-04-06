@@ -190,7 +190,7 @@ const getKeyWord = (id, name, keyWord) => {
 //console.log(getUserAccountData(11987876567))
 //console.log(getContactsData(11987876567))
 //console.log(getUserMessages(11966578996))
-console.log(getUserContacts(11966578996, 'J'))
+//console.log(getUserContacts(11966578996, 'J'))
 //console.log(getKeyWord(11955577796, 'peter wilsen', 'co'))
 
 module.exports = {
