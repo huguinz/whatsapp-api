@@ -52,7 +52,7 @@ body {
 			& div:hover {
 				background-color: #dfd8d89b;
 				cursor: pointer;
-				transform: translateX(5px);
+				transform: translateX(2px);
 			}
 
 			& div:active {
