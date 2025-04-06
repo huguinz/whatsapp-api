@@ -1,9 +1,13 @@
 @charset "UTF-8";
+@font-face {
+	font-family: 'Branding SF';
+	src: url('../fonts/branding-sf-narrow-medium.ttf') format('truetype');
+}
 
 * {
 	margin: 0;
 	padding: 0;
-	font-family: Helvetica, sans-serif;
+	font-family: 'Branding SF', Helvetica, sans-serif;
 	box-sizing: border-box;
 }
 
@@ -15,15 +19,18 @@
 
 body {
 	display: flex;
-	flex-direction: column;
 	height: 100dvh;
 	width: 100dvw;
 	background-color: var(--default-page-color);
+	overflow: hidden;
 
 	& .container {
-		height: 100vh;
 		width: 30vw;
+		overflow-y: auto;
+		overflow-x: hidden;
 		border-right: 1px solid var(--default-border-color);
+		display: flex;
+		flex-direction: column;
 
 		& #contacts {
 			display: flex;
@@ -97,10 +104,37 @@ body {
 			}
 		}
 	}
+
+	& #inicial_screen {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+		height: 100%;
+		width: 70%;
+
+		& img {
+			height: 25vw;
+		}
+
+		& h2 {
+			font-size: clamp(2.4rem, 2vw, 2.8rem);
+		}
+
+		& p {
+			text-align: center;
+			font-size: 1.3rem;
+		}
+	}
 }
 
 .profile_image {
 	width: 3.8vw;
 	height: 3.8vw;
 	margin-right: 1vw;
+}
+
+.container::-webkit-scrollbar {
+	width: 0.1rem;
 }
