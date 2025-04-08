@@ -26,6 +26,7 @@ body {
 
 	& .container {
 		width: 30vw;
+		background-color: white;
 		overflow-y: auto;
 		overflow-x: hidden;
 		border-right: 1px solid var(--default-border-color);
