@@ -2,6 +2,7 @@
 
 const nameContact = document.getElementById('search_contact')
 const contacts = document.getElementById('contacts')
+const inicial_screen = document.getElementById('inicial_screen')
 
 const showContacts = async () => {
 	try {
@@ -19,6 +20,7 @@ const showContacts = async () => {
 				imageProfile.src = '../img/teste.png'
 				imageProfile.alt = 'profile image'
 				imageProfile.classList.add('profile_image')
+				createContacts.setAttribute('data-name', item.nome)
 
 				listContacts.textContent = item.nome
 				createContacts.appendChild(imageProfile)
@@ -65,4 +67,27 @@ nameContact.addEventListener('keydown', (event) => {
 	if (event.key == 'Enter') {
 		return searchContacts(nameContact.value)
 	}
+})
+
+const showChatsContacts = async (name) => {
+	const url = `http://localhost:8080/v1/whatsapp/filtro/?numero=11987876567&contato=${name}`
+	const response = await fetch(url)
+	const data = await response.json()
+
+	if (response.status === 200 && data.contato.length === 1) {
+		inicial_screen.replaceChildren('')
+
+		data.contato.forEach((item) => {
+			item.mensagens.forEach((messages) => {
+				console.log(messages)
+			})
+		})
+	} else {
+		alert('não foi possível acessar as conversas com este usuario!')
+	}
+}
+
+contacts.addEventListener('click', (event) => {
+	const executeShowChatsContacts = event.target.getAttribute('data-name')
+	showChatsContacts(executeShowChatsContacts)
 })
