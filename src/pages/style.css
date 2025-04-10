@@ -119,6 +119,23 @@ body {
 			height: 25vw;
 		}
 
+		.messages {
+			padding: 0.7rem;
+			display: flex;
+			justify-content: space-between;
+			gap: 2rem;
+			width: max-content;
+			border-radius: 10px;
+		}
+
+		.sender_me {
+			background-color: #bef2be;
+		}
+
+		.sender_contact {
+			background-color: white;
+		}
+
 		& h2 {
 			font-size: clamp(2.4rem, 2vw, 2.8rem);
 		}

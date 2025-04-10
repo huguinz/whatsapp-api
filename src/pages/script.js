@@ -76,10 +76,35 @@ const showChatsContacts = async (name) => {
 
 	if (response.status === 200 && data.contato.length === 1) {
 		inicial_screen.replaceChildren('')
+		inicial_screen.style.backgroundColor = 'red'
 
 		data.contato.forEach((item) => {
 			item.mensagens.forEach((messages) => {
 				console.log(messages)
+				const contentMe = document.createElement('div')
+				const contentChatsMe = document.createElement('p')
+				const talkTimeMe = document.createElement('p')
+
+				const contentContact = document.createElement('div')
+				const contentChatsContact = document.createElement('p')
+				const talkTimeContact = document.createElement('p')
+
+				contentMe.classList.add('messages', 'sender_me')
+				contentContact.classList.add('messages', 'sender_contact')
+
+				if (messages.sender == 'me') {
+					contentChatsMe.textContent = messages.content
+					talkTimeMe.textContent = messages.time
+					contentMe.appendChild(contentChatsMe)
+					contentMe.appendChild(talkTimeMe)
+					inicial_screen.appendChild(contentMe)
+				} else {
+					contentChatsContact.textContent = messages.content
+					talkTimeContact.textContent = messages.time
+					contentContact.appendChild(contentChatsContact)
+					contentContact.appendChild(talkTimeContact)
+					inicial_screen.appendChild(contentContact)
+				}
 			})
 		})
 	} else {
