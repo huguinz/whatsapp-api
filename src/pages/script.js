@@ -76,20 +76,24 @@ const showChatsContacts = async (name) => {
 
 	if (response.status === 200 && data.contato.length === 1) {
 		inicial_screen.replaceChildren('')
-		inicial_screen.style.backgroundColor = 'red'
+		inicial_screen.style.backgroundColor = 'whitesmoke'
 
 		data.contato.forEach((item) => {
 			item.mensagens.forEach((messages) => {
-				console.log(messages)
+				const contentAllMe = document.createElement('div')
 				const contentMe = document.createElement('div')
 				const contentChatsMe = document.createElement('p')
 				const talkTimeMe = document.createElement('p')
 
+				const contentAllContact = document.createElement('div')
 				const contentContact = document.createElement('div')
 				const contentChatsContact = document.createElement('p')
 				const talkTimeContact = document.createElement('p')
+				const nameChatContact = document.createElement('p')
 
+				contentAllMe.classList.add('content_all_me')
 				contentMe.classList.add('messages', 'sender_me')
+				contentAllContact.classList.add('content_all_contact')
 				contentContact.classList.add('messages', 'sender_contact')
 
 				if (messages.sender == 'me') {
@@ -97,13 +101,21 @@ const showChatsContacts = async (name) => {
 					talkTimeMe.textContent = messages.time
 					contentMe.appendChild(contentChatsMe)
 					contentMe.appendChild(talkTimeMe)
-					inicial_screen.appendChild(contentMe)
+					contentAllMe.appendChild(contentMe)
+					inicial_screen.appendChild(contentAllMe)
 				} else {
+					const div = document.createElement('div')
+
 					contentChatsContact.textContent = messages.content
 					talkTimeContact.textContent = messages.time
-					contentContact.appendChild(contentChatsContact)
-					contentContact.appendChild(talkTimeContact)
-					inicial_screen.appendChild(contentContact)
+					nameChatContact.textContent = messages.sender
+
+					div.appendChild(contentChatsContact)
+					div.appendChild(talkTimeContact)
+					contentContact.appendChild(div)
+					contentContact.appendChild(nameChatContact)
+					contentAllContact.appendChild(contentContact)
+					inicial_screen.appendChild(contentAllContact)
 				}
 			})
 		})
@@ -114,5 +126,9 @@ const showChatsContacts = async (name) => {
 
 contacts.addEventListener('click', (event) => {
 	const executeShowChatsContacts = event.target.getAttribute('data-name')
+	contacts.style.pointerEvents = 'none'
+	setTimeout(() => {
+		contacts.style.pointerEvents = 'all'
+	}, 700)
 	showChatsContacts(executeShowChatsContacts)
 })

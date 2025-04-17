@@ -114,26 +114,65 @@ body {
 		gap: 1rem;
 		height: 100%;
 		width: 70%;
+		padding: max(1vw, 1rem);
 
 		& img {
 			height: 25vw;
 		}
 
-		.messages {
+		& .messages {
 			padding: 0.7rem;
-			display: flex;
-			justify-content: space-between;
-			gap: 2rem;
-			width: max-content;
+			max-width: 70%;
 			border-radius: 10px;
 		}
 
-		.sender_me {
-			background-color: #bef2be;
+		& .content_all_me {
+			width: 100%;
+			display: flex;
+			justify-content: flex-end;
+
+			& p {
+				text-align: start;
+				font-size: clamp(1rem, 1.4vw, 1.8rem);
+
+				&:nth-child(2) {
+					font-size: clamp(0.6rem, 1.2vw, 1.2rem);
+				}
+			}
 		}
 
-		.sender_contact {
+		& .content_all_contact {
+			width: 100%;
+			display: flex;
+			justify-content: flex-start;
+
+			& p {
+				text-align: start;
+				font-size: clamp(1rem, 1.4vw, 1.8rem);
+
+				&:nth-child(2) {
+					font-size: clamp(0.6rem, 1.2vw, 1.2rem);
+				}
+			}
+		}
+
+		& .sender_me {
+			background-color: #bef2be;
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-end;
+			gap: 2rem;
+		}
+
+		& .sender_contact {
 			background-color: white;
+			display: flex;
+			flex-direction: column-reverse;
+
+			& div {
+				display: flex;
+				gap: 0.7rem;
+			}
 		}
 
 		& h2 {
@@ -151,6 +190,8 @@ body {
 	width: 3.8vw;
 	height: 3.8vw;
 	margin-right: 1vw;
+	pointer-events: none;
+	user-select: none;
 }
 
 .container::-webkit-scrollbar {
